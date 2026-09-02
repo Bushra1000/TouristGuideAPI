@@ -16,14 +16,15 @@ public class TouristService {
         this.touristrepository = touristrepository;
     }
 
-    public ArrayList<TouristAttraktion> getAllAttractions(){
-        return touristRepository.getAllAttraktions();
+    public ArrayList<TouristAttraction> getAllAttractions(){
+        return TouristRepository.getAllAttractions();
     }
 
-    public TouristAttraktion findMatchingAttractionByName(String name){
-        return touristRepository.findMatchingAttractionByName(name);
+    public TouristAttraction findMatchingAttractionByName(String name){
+        return TouristRepository.findMatchingAttractionByName(name);
     }
     ¢¢
+
 
 
 
