@@ -3,16 +3,17 @@ package com.example.touristguideapi.repository;
 import com.example.touristguideapi.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
-
 import java.util.ArrayList;
 
 @Repository
-
 public class TouristRepository {
 
-        private ArrayList<TouristAttraction> attractions = new ArrayList<>();
+    private static ArrayList<TouristAttraction> attractions = new ArrayList<>();
 
-        public TouristRepository() {
+
+    public TouristRepository() {
+
+        if (attractions.isEmpty()) {
 
             attractions.add(new TouristAttraction(
                     "Brønshøj Torv",
@@ -29,49 +30,59 @@ public class TouristRepository {
                     "Et bibliotek i Brønshøj"
             ));
         }
+    }
 
-        public ArrayList<TouristAttraction> getAllAttractions() {
-            return attractions;
-        }
 
-        public TouristAttraction getAttractionByName(String name) {
+    // Hent alle attraktioner
+    public static ArrayList<TouristAttraction> getAllAttractions() {
+        return attractions;
+    }
 
-            for (TouristAttraction attraction : attractions) {
 
-                if (attraction.getName().equalsIgnoreCase(name)) {
-                    return attraction;
-                }
-            }
+    // Find én attraktion ud fra navn
+    public static TouristAttraction findMatchingAttractionByName(String name) {
 
-            return null;
-        }
+        for (TouristAttraction attraction : attractions) {
 
-        public void addAttraction(TouristAttraction attraction) {
-            attractions.add(attraction);
-        }
-
-        public void updateAttraction(TouristAttraction updatedAttraction) {
-
-            for (TouristAttraction attraction : attractions) {
-
-                if (attraction.getName()
-                        .equalsIgnoreCase(updatedAttraction.getName())) {
-
-                    attraction.setDescription(
-                            updatedAttraction.getDescription()
-                    );
-                }
+            if (attraction.getName().equalsIgnoreCase(name)) {
+                return attraction;
             }
         }
 
-        public void deleteAttraction(String name) {
+        return null;
+    }
 
-            attractions.removeIf(
-                    attraction ->
-                            attraction.getName().equalsIgnoreCase(name)
-            );
+
+    // Tilføj
+    public static void addAttraction(TouristAttraction attraction) {
+        attractions.add(attraction);
+    }
+
+
+    // Opdater
+    public static void updateAttraction(TouristAttraction updatedAttraction) {
+
+        for (TouristAttraction attraction : attractions) {
+
+            if (attraction.getName()
+                    .equalsIgnoreCase(updatedAttraction.getName())) {
+
+                attraction.setDescription(updatedAttraction.getDescription());
+                return;
+            }
         }
     }
+
+
+    // Slet
+    public static void deleteAttraction(String name) {
+
+        attractions.removeIf(
+                attraction ->
+                        attraction.getName().equalsIgnoreCase(name)
+        );
+    }
+}
     // Create an ArrayList
 
     // add the attractions
@@ -92,4 +103,4 @@ public class TouristRepository {
     // Bushra
 
 
-}
+

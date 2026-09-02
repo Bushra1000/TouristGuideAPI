@@ -23,7 +23,7 @@ public class TouristService {
     public TouristAttraction findMatchingAttractionByName(String name){
         return TouristRepository.findMatchingAttractionByName(name);
     }
-    ¢¢
+
 
 
 
