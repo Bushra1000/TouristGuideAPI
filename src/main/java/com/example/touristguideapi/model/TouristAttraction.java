@@ -9,4 +9,6 @@ public class TouristAttraction {
         this.name = name;
         this.description = description;
     }
+
+    // Aisha A.
 }
