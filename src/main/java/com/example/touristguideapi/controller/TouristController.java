@@ -1,6 +1,6 @@
 package com.example.touristguideapi.controller;
 
-import com.example. touristguideapi.model.TouristAttraction;
+import com.example.touristguideapi.model.TouristAttraction;
 import com.example.touristguideapi.service.TouristService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +11,11 @@ import java.util.ArrayList;
 
 
 @Controller
+
 @RequestMapping("/attractions")
+
 public class TouristController {
+
     private final TouristService touristService;
 
     public TouristController(TouristService touristService){
@@ -26,6 +29,15 @@ public class TouristController {
         ArrayList<TouristAttraction> attractions = touristService.getAllAttractions();
         return new ResponseEntity<>(attractions,HttpStatus.OK);
     }
+    @GetMapping("/{name}")
+    public ResponseEntity<TouristAttraction>getAttractionByName(
+            @PathVariable String name){
+
+        TouristAttraction attraction = touristService.getAttractionByName(name);
+
+        return new ResponseEntity<>(attraction,HttpStatus.OK);
+    }
+
 
     @PostMapping
 
